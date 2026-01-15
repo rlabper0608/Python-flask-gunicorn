@@ -55,3 +55,18 @@ Y el archivo de flask.sh:
 
 ## Tarea de ampliación
 Tenemos que realizar cambios en ambos archivos.
+Para esta parte, además de los cambios, he tenido que añadir un archivo más llamado `app_azure.service` para que el servicio de gunicorn se ejecute en el directorio de la aplicación de Azure, y para esto lo he añadido en el archivo `flask.sh`.
+![VagrantFile](img/app_azure.png)
+
+Solo tengo que copiar el repositorio propuesto en la tarea, para esto primero tengo que instalar git, luego clonarlo, dar los permisos pertienentes a la carpeta, copiar el archivo de configuración que he creado antes, reiniciar todos los servicios pertinentes y volver a habilitar estos servicios. Esto es en el la parte del `flask.sh`
+La cual quedaría así:
+![VagrantFile](img/flask_azure.png)
+
+Ahora los cambios que hemos realizado en el Vagrantfile, sería añadir el clonado de nuevo de la aplicación (ya que me daba error si solo lo tenia en un lado), dar permisos a la carpeta donde tenemos los dos trabajos, (carpeta que hemos creado antes) y en el último provisión llamamos al flask.sh para que se ejecute el script de root.
+![VagrantFile](img/Vagrantfile_azure.png)
+
+Cabe destacar que tambiñen hemos realizado cambios como es lógico en el archivo de `app.conf` para que el servicio de nginx se ejecute en el puerto 80, y que el directorio de la aplicación de Azure sea el de `/var/www/msdocs-python-flask-webapp-quickstart`, y que la aplicación de azure se ejecute en la ruta de `/azure/`.
+![VagrantFile](img/app.conf_azure.png)
+
+EL resultado que nos encontramos en la página de la aplicación de Azure es el siguiente:
+![VagrantFile](img/azure.png)

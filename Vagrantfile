@@ -29,8 +29,6 @@ Vagrant.configure("2") do |config|
       pipenv install gunicorn
     SHELL
 
-    # PASO 3: El script de tu profesor (Root)
-    # Configura servicios, Nginx y arranca todo
     debian.vm.provision "shell", path: "flask.sh"
   end
 end
