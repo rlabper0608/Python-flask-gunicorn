@@ -54,3 +54,4 @@ Y el archivo de flask.sh:
 ![VagrantFile](img/flask.png)
 
 ## Tarea de ampliación
+Tenemos que realizar cambios en ambos archivos.

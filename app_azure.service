@@ -1,0 +1,12 @@
+[Unit]
+Description=App Azure Ampliacion
+After=network.target
+
+[Service]
+User=vagrant
+Group=www-data
+WorkingDirectory=/var/www/msdocs-python-flask-webapp-quickstart
+ExecStart=/home/vagrant/.local/bin/pipenv run gunicorn --workers 3 --bind unix:/var/www/msdocs-python-flask-webapp-quickstart/app.sock app:app
+
+[Install]
+WantedBy=multi-user.target
