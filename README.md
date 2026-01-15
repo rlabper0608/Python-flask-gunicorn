@@ -66,7 +66,7 @@ Ahora los cambios que hemos realizado en el Vagrantfile, sería añadir el clona
 ![VagrantFile](img/Vagrantfile_azure.png)
 
 Cabe destacar que tambiñen hemos realizado cambios como es lógico en el archivo de `app.conf` para que el servicio de nginx se ejecute en el puerto 80, y que el directorio de la aplicación de Azure sea el de `/var/www/msdocs-python-flask-webapp-quickstart`, y que la aplicación de azure se ejecute en la ruta de `/azure/`.
-![VagrantFile](img/app.conf_azure.png)
+![VagrantFile](img/app-conf_azure.png)
 
 EL resultado que nos encontramos en la página de la aplicación de Azure es el siguiente:
 ![VagrantFile](img/azure.png)
