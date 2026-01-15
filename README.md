@@ -52,3 +52,5 @@ Por tanto así quedaría el archivo Vagrantfile:
 
 Y el archivo de flask.sh:
 ![VagrantFile](img/flask.png)
+
+## Tarea de ampliación
