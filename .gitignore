@@ -1,2 +1,2 @@
-./vagrant
+./.vagrant
 ./python-flask-gunicorn-html
