@@ -14,4 +14,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", path: "bootstrap.sh"
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    pip3 install pipenv
+    pip3 install python-dotenv
+    cd /var/www/app
+    nano .env
+    pipenv install flask gunicorn
+  SHELL
 end
