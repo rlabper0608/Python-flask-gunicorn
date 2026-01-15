@@ -1,33 +1,34 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/debian-11"
-  config.ssh.insert_key= false
-
+  config.ssh.insert_key = false
 
   config.vm.define "flask" do |debian|
-     debian.vm.hostname="debian"
-     debian.vm.network "private_network",ip: "192.168.56.10"
-     debian.vm.provision "shell",path: "bootstrap.sh"
-     debian.vm.provision "shell",privileged: false,inline: <<-SHELL
+    debian.vm.hostname = "debian"
+    debian.vm.network "private_network", ip: "192.168.56.20"
+    
+    # Primero el script de root
+    debian.vm.provision "shell", path: "flask.sh"
 
-     pip3 install pipenv python-dotenv
-     export PATH="$PATH:/home/vagrant/.local/bin"
-     pipenv --version
+    # Segundo: Bloque de usuario para la App
+    debian.vm.provision "shell", privileged: false, inline: <<-SHELL
+      # Instalamos pipenv para el usuario vagrant
+      pip3 install --user pipenv python-dotenv
+      export PATH="$PATH:/home/vagrant/.local/bin"
+      
+      cd /var/www/app
 
-     cd /var/www/app
+      echo "FLASK_APP=wsgi.py" > .env
+      echo "FLASK_ENV=production" >> .env
 
-     echo "FLASK_APP=wsgi.py" > .env
-     echo "FLASK_ENV=production" >> .env
+      # Instalación de dependencias
+      /home/vagrant/.local/bin/pipenv install flask gunicorn
 
-     pipenv install flask gunicorn
+      # Copiamos los archivos (asegúrate de que existen en tu carpeta)
+      cp /vagrant/application.py .
+      cp /vagrant/wsgi.py .
 
-     cp /vagrant/application.py ./
-     cp /vagrant/wsgi.py ./
-
-     # COMANDO PARQA QUE CORRA DIRECTAMENTE pipenv run flask run --host '0.0.0.0' &
-     pipenv run gunicorn --workers 4 --bind 0.0.0.0:5000 wsgi:app --daemon
-     SHELL
+      # Prueba rápida de Gunicorn
+      /home/vagrant/.local/bin/pipenv run gunicorn --workers 4 --bind 0.0.0.0:5000 wsgi:app --daemon
+    SHELL
   end
 end
