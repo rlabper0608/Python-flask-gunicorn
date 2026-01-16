@@ -6,7 +6,7 @@ After=network.target
 User=vagrant
 Group=www-data
 WorkingDirectory=/var/www/msdocs-python-flask-webapp-quickstart
-ExecStart=/home/vagrant/.local/bin/pipenv run gunicorn --workers 4 --bind unix:/var/www/msdocs-python-flask-webapp-quickstart/app.sock app:app
+ExecStart=/usr/local/bin/pipenv run gunicorn --workers 4 --bind unix:/var/www/msdocs-python-flask-webapp-quickstart/app.sock app:app
 
 [Install]
 WantedBy=multi-user.target

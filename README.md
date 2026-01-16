@@ -70,3 +70,7 @@ Cabe destacar que tambiñen hemos realizado cambios como es lógico en el archiv
 
 EL resultado que nos encontramos en la página de la aplicación de Azure es el siguiente:
 ![VagrantFile](img/azure.png)
+
+## Correción:
+Al volver a lanzar la máquina, no se veía la app de azure y la he tenido que corregir, los cambios realizados son en el archivo de azure_app.service
+![VagrantFile](img/azure_app_corregido.png)
